@@ -8,7 +8,7 @@ const router = require("./routes/contactRoutes");
 const dotenv = require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 4000;
-mongoose.connect(mongoString);
+mongoose.connect(mongoString, { useNewUrlParser: true });
 const database = mongoose.connection;
 
 database.on("error", (error) => {
