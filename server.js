@@ -1,6 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const cors = require("cors");
+
+const corsOpts = {
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+  credentials: true,
+  origin: "http://localhost:3000",
+  exposedHeaders: ["set-cookie"],
+};
 
 const mongoString =
   "mongodb+srv://kartikbhati29:yjkOnTXP8Tm7HwDi@cluster0.a50wmio.mongodb.net/";
@@ -21,6 +30,7 @@ database.once("connected", () => {
 });
 
 app.use(express.json());
+app.use(cors(corsOpts));
 app.use("/", router);
 app.use(errorHandler);
 
