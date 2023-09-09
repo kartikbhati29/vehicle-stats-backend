@@ -6,9 +6,7 @@ const cors = require("cors");
 const corsOpts = {
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
-  credentials: true,
   origin: "http://localhost:3000",
-  exposedHeaders: ["set-cookie"],
 };
 
 const mongoString =
