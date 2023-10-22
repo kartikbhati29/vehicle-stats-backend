@@ -8,6 +8,7 @@ const userModel = require("../models/user.model");
 
 const getVehicles = async (req, res) => {
   const d = await vehicles.find();
+  console.log("got this", d);
   res.status(200).json({ status: "Get vehicle", list: d });
 };
 
