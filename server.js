@@ -23,7 +23,6 @@ database.once("connected", () => {
 });
 
 app.use(express.json());
-app.use(cors(corsOpts));
 app.use("/", router);
 app.use(errorHandler);
 
