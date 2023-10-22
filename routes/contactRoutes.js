@@ -5,7 +5,7 @@ const {
   getVehicles,
   updateVehicleById,
   addVehicle,
-  deleteVehicle,
+  deleteExpense,
   addVehicleExpense,
   getVehicleExpenses,
   deleteAllData,
@@ -13,12 +13,8 @@ const {
 
 router.route("/").get(getVehicles).post(addVehicle);
 router.route("/expenses/:id").get(getVehicleExpenses);
-router.route("/expenses/remove").post(deleteAllData);
+router.route("/expenses/remove").post(deleteExpense);
 
-router
-  .route("/:id")
-  .put(updateVehicleById)
-  .delete(deleteVehicle)
-  .post(addVehicleExpense);
+router.route("/:id").put(updateVehicleById).post(addVehicleExpense);
 
 module.exports = router;

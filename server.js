@@ -15,7 +15,7 @@ const errorHandler = require("./middleware/errorHandler");
 const router = require("./routes/contactRoutes");
 const dotenv = require("dotenv").config();
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 mongoose.connect(mongoString, { useNewUrlParser: true });
 const database = mongoose.connection;
 

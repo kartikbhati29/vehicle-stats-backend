@@ -4,6 +4,7 @@
 
 const vehicles = require("../models/vehicles.model");
 const expenses = require("../models/user.model");
+const userModel = require("../models/user.model");
 
 const getVehicles = async (req, res) => {
   const d = await vehicles.find();
@@ -62,7 +63,30 @@ const getVehicleExpenses = async (req, res) => {
 //@route DELETE /api/Vehivle/id
 //@access public
 
-const deleteVehicle = (req, res) => {
+const deleteExpense = async (req, res) => {
+  const foundData = await userModel.findOne({ vehicleId: req.body.vehicleId });
+  let updatedList = [];
+  if (foundData?.expensesList.length !== 0) {
+    updatedList = foundData?.expensesList.filter((item) => {
+      return item._id != req.body.expenseId;
+    });
+  }
+  const updatedData = await userModel.updateOne(
+    { vehicleId: req.body.vehicleId },
+    {
+      $set: { expensesList: updatedList },
+    }
+  );
+  res
+    .status(200)
+    .json({ status: `delete contact by id ${req.body.vehicleId}` });
+};
+
+const editExpense = async (req, res) => {
+  const id = req.params.id;
+  const foundData = await userModel.findOne({ vehicleId: id });
+  console.log(foundData);
+  // const data = await expenses.deleteOne(req.params.id);
   res.status(200).json({ status: `delete contact by id ${req.params.id}` });
 };
 
@@ -75,7 +99,7 @@ module.exports = {
   getVehicles,
   updateVehicleById,
   addVehicle,
-  deleteVehicle,
+  deleteExpense,
   addVehicleExpense,
   getVehicleExpenses,
   deleteAllData,
