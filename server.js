@@ -1,13 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const cors = require("cors");
-
-const corsOpts = {
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type"],
-  origin: "http://localhost:3000",
-};
 
 const mongoString =
   "mongodb+srv://kartikbhati29:yjkOnTXP8Tm7HwDi@cluster0.a50wmio.mongodb.net/";
@@ -15,7 +8,9 @@ const errorHandler = require("./middleware/errorHandler");
 const router = require("./routes/contactRoutes");
 const dotenv = require("dotenv").config();
 const app = express();
+
 const port = process.env.PORT || 3001;
+
 mongoose.connect(mongoString, { useNewUrlParser: true });
 const database = mongoose.connection;
 
